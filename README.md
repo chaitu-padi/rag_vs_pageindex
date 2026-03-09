@@ -46,7 +46,106 @@
 
 ---
 
-# 📑 Introduction to PageIndex
+# � PageIndex RAG vs Standard RAG Comparison
+
+This repository includes an **interactive comparison tool** that demonstrates the advantages of **PageIndex RAG** (reasoning-based, structure-aware retrieval) versus **Standard RAG** (vector similarity-based retrieval).
+
+## 📊 What's Included
+
+### Core Components:
+- **PageIndex RAG**: Hierarchical tree-based retrieval with LLM reasoning over document structure
+- **Standard RAG**: Vector embedding-based retrieval with semantic similarity search
+- **Web UI**: Interactive side-by-side comparison tool with real-time progress tracking
+- **CLI Mode**: Command-line interface for batch testing and analysis
+
+### Features:
+✅ **Real-time Progress Streaming** - Live batch progress updates in both CLI and web UI  
+✅ **Document Structure Analysis** - PageIndex builds and visualizes document hierarchy  
+✅ **Query Reasoning** - See how PageIndex reasons about section relevance vs vector similarity  
+✅ **Execution Metrics** - Compare response times, sections retrieved, and result quality  
+✅ **Session Management** - Load PDFs, run multiple queries, review comparison results  
+
+## 🚀 Quick Start - Comparison Tool
+
+### Web Interface
+```bash
+python pageindex/comparison_ui.py --mode web --port 5000
+```
+Then open `http://127.0.0.1:5000` in your browser.
+
+**Web UI Features:**
+- PDF file selection and initialization
+- Real-time progress bar for embedding generation
+- Side-by-side result comparison
+- Detailed reasoning and retrieval metrics
+- Summary statistics
+
+### CLI Mode
+```bash
+python pageindex/comparison_ui.py --mode cli
+```
+
+**CLI Features:**
+- Interactive PDF selection
+- Batch query comparison
+- Full terminal output with batch progress
+- Export results to JSON
+
+## 📈 Why Compare PageIndex vs Standard RAG?
+
+### Standard RAG Strengths:
+- Fast retrieval using vector similarity
+- Works well for simple, keyword-focused queries
+- Mature ecosystem and infrastructure
+
+### PageIndex RAG Advantages:
+- **Reasoning-based**: Understands document structure and concept relationships
+- **Better for complex queries**: Multi-step reasoning across sections
+- **Explainable**: Clear reasoning path for why sections were selected
+- **No chunking artifacts**: Works with natural document sections
+- **Superior on professional documents**: Domain-specific long documents with hierarchical structure
+
+## 📚 Best Questions for Comparison
+
+The repository includes curated question sets that demonstrate PageIndex's advantages:
+
+- **Simple Lookup** (Both systems succeed equally)
+- **Concept Definition** (PageIndex advantage: hierarchical understanding)
+- **Multi-Step Reasoning** (PageIndex strength: connects across sections)
+- **Contradiction Resolution** (PageIndex excels: nuanced synthesis)
+- **Implicit Information** (PageIndex dominates: human-like reasoning)
+
+See `OPTIMAL_TEST_QUESTIONS.md` for detailed question categories and testing strategy.
+
+## 🔧 Configuration
+
+Both RAG systems can be configured in `pageindex/comparison_ui.py`:
+
+**Standard RAG Options:**
+- `chunk_size`: Text chunk size (default: 512)
+- `chunk_overlap`: Overlap between chunks (default: 100)
+- `top_k`: Number of chunks to retrieve (default: 3)
+
+**PageIndex RAG Options:**
+- `toc_check_page_num`: Pages to scan for TOC (default: 20)
+- `max_page_num_each_node`: Max pages per tree node (default: 15)
+- `max_token_num_each_node`: Max tokens per node (default: 4000)
+- `if_add_node_summary`: Generate section summaries (default: yes)
+
+## 📊 Results & Metrics
+
+The tool tracks and exports:
+- **Execution time** for each RAG system
+- **Sections/chunks retrieved** 
+- **Reasoning quality** (for PageIndex)
+- **Answer completeness and accuracy**
+- **User confidence** scores
+
+Results are automatically exported to JSON for further analysis.
+
+---
+
+# �📑 Introduction to PageIndex
 
 Are you frustrated with vector database retrieval accuracy for long professional documents? Traditional vector-based RAG relies on semantic *similarity* rather than true *relevance*. But **similarity ≠ relevance** — what we truly need in retrieval is **relevance**, and that requires **reasoning**. When working with professional documents that demand domain expertise and multi-step reasoning, similarity search often falls short.
 
@@ -230,41 +329,3 @@ Explore the full [benchmark results](https://github.com/VectifyAI/Mafin2.5-Finan
 * 🔌 [MCP setup](https://pageindex.ai/mcp#quick-setup) & [API docs](https://docs.pageindex.ai/quickstart): integration details and configuration options.
 
 ---
-
-# ⭐ Support Us
-Please cite this work as:
-```
-Mingtian Zhang, Yu Tang and PageIndex Team,
-"PageIndex: Next-Generation Vectorless, Reasoning-based RAG",
-PageIndex Blog, Sep 2025.
-```
-
-Or use the BibTeX citation:
-
-```
-@article{zhang2025pageindex,
-  author = {Mingtian Zhang and Yu Tang and PageIndex Team},
-  title = {PageIndex: Next-Generation Vectorless, Reasoning-based RAG},
-  journal = {PageIndex Blog},
-  year = {2025},
-  month = {September},
-  note = {https://pageindex.ai/blog/pageindex-intro},
-}
-```
-
-Leave us a star 🌟 if you like our project. Thank you!  
-
-<p>
-  <img src="https://github.com/user-attachments/assets/eae4ff38-48ae-4a7c-b19f-eab81201d794" width="80%">
-</p>
-
-### Connect with Us
-
-[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/PageIndexAI)&nbsp;
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/vectify-ai/)&nbsp;
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/VuXuf29EUj)&nbsp;
-[![Contact Us](https://img.shields.io/badge/Contact_Us-3B82F6?style=for-the-badge&logo=envelope&logoColor=white)](https://ii2abc2jejf.typeform.com/to/tK3AXl8T)
-
----
-
-© 2025 [Vectify AI](https://vectify.ai)
